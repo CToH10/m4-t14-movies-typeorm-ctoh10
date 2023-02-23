@@ -4,6 +4,7 @@ import {
   postMovieController,
 } from "../controllers/movies.controller";
 import { ensureData } from "../middlewares/ensureData.middleware";
+import { ensureMovieExists } from "../middlewares/ensureMovieExists.middleware";
 import { ensureNameMiddle } from "../middlewares/ensureNameMiddle.middleware";
 import { movieRequestSchema } from "../schemas/movie.schema";
 
@@ -16,4 +17,5 @@ movieRouter.post(
   postMovieController
 );
 movieRouter.get("", listMoviesController);
-movieRouter.patch("", ensureNameMiddle);
+movieRouter.patch("/:id", ensureMovieExists, ensureNameMiddle);
+movieRouter.delete("/:id", ensureMovieExists);
