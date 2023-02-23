@@ -20,6 +20,8 @@ export const listAllMovies = async (params: any) => {
   sort === "price" || sort === "duration" ? sort : (sort = "id");
   sort === "id" ? (order = "ASC") : sort;
 
+  const nextPage: number = Number(params.page) === 0 ? 1 : page + 1;
+
   let orderDB = {
     [sort]: order,
   };
@@ -32,13 +34,15 @@ export const listAllMovies = async (params: any) => {
 
   const maxMovies: number = (await movieRepo.find()).length;
 
-  // if (page * perPage > maxMovies) {
-  //   console.log("mais que poderia");
-  // }
-
   return {
-    previousPage: "string",
-    nextPage: "string",
+    previousPage:
+      perPage * (page - 1) === 0
+        ? null
+        : `http://localhost:3000/movies?page=${page - 1}&perPage=${perPage}`,
+    nextPage:
+      page * perPage >= maxMovies
+        ? null
+        : `http://localhost:3000/movies?page=${nextPage}&perPage=${perPage}`,
     count: maxMovies,
     data: movies,
   };
