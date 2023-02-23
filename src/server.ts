@@ -1,5 +1,5 @@
 import { AppDataSource } from "./data-source";
-import { app } from "./app";
+import app from "./app";
 import "dotenv/config";
 
 AppDataSource.initialize()

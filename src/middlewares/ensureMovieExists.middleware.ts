@@ -16,7 +16,7 @@ export const ensureMovieExists = async (
   });
 
   if (!foundMovie[0]) {
-    throw new AppError("Movie does not exist", 404);
+    throw new AppError("Movie not found", 404);
   }
 
   return next();

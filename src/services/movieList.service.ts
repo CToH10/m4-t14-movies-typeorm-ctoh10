@@ -19,7 +19,7 @@ export const listAllMovies = async (params: any) => {
   sort === "price" || sort === "duration" ? sort : (sort = "id");
   sort === "id" ? (order = "ASC") : sort;
 
-  const nextPage: number = Number(params.page) === 0 ? 1 : page + 1;
+  const nextPage: number = Number(params.page) === 0 ? 2 : page + 1;
 
   let orderDB = {
     [sort]: order,
@@ -34,7 +34,7 @@ export const listAllMovies = async (params: any) => {
   const maxMovies: number = (await movieRepo.find()).length;
 
   return {
-    previousPage:
+    prevPage:
       perPage * (page - 1) === 0
         ? null
         : `http://localhost:3000/movies?page=${page - 1}&perPage=${perPage}`,

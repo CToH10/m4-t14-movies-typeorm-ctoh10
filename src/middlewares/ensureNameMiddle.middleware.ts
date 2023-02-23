@@ -14,7 +14,7 @@ export const ensureNameMiddle = async (
   });
 
   if (movieName) {
-    throw new AppError("Name already exists", 409);
+    throw new AppError("Movie already exists.", 409);
   }
 
   return next();
