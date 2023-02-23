@@ -9,7 +9,7 @@ export class Movies {
   name: string;
 
   @Column({ type: "text", nullable: true })
-  description: string | undefined;
+  description?: string | undefined;
 
   @Column()
   price: number;

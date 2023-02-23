@@ -1,16 +1,19 @@
 import { NextFunction, Request, Response } from "express";
-import { ZodTypeAny } from "zod";
+import { AppDataSource } from "../data-source";
+import { Movies } from "../entities";
+import { AppError } from "../error";
 
-export const postMovieMiddle =
-  (schema: ZodTypeAny) =>
-  (
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ): Response | void => {
-    const validatedData = schema.parse(request.body);
+export const postMovieMiddle = async (
+  request: Request,
+  response: Response,
+  next: NextFunction
+): Promise<Response | void> => {
+  const movieRepo = AppDataSource.getRepository(Movies);
+  const movieName = await movieRepo.findOneBy({ name: request.body.name });
 
-    request.body = validatedData;
+  if (movieName) {
+    throw new AppError("Name already exists", 409);
+  }
 
-    return next();
-  };
+  return next();
+};
