@@ -3,7 +3,7 @@ import { AppDataSource } from "../data-source";
 import { Movies } from "../entities";
 import { AppError } from "../error";
 
-export const postMovieMiddle = async (
+export const ensureNameMiddle = async (
   request: Request,
   response: Response,
   next: NextFunction

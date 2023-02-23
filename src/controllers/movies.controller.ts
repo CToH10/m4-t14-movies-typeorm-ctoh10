@@ -16,10 +16,10 @@ export const postMovieController = async (
 export const listMoviesController = async (
   request: Request,
   response: Response
-) => {
-  const movies = await listAllMovies();
+): Promise<Response> => {
+  const movies = await listAllMovies(request.query);
 
-  if (movies.length === 0) {
+  if (movies.data.length === 0) {
     return response.status(404).json({ message: "No movies found" });
   }
 

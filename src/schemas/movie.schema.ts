@@ -11,6 +11,8 @@ export const movieSchema = movieRequestSchema.extend({
   id: z.number(),
 });
 
-export const moviePatchSchema = movieSchema.omit({
-  id: true,
-});
+export const moviePatchSchema = movieSchema
+  .omit({
+    id: true,
+  })
+  .partial();

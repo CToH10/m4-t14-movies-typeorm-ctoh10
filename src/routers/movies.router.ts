@@ -4,7 +4,7 @@ import {
   postMovieController,
 } from "../controllers/movies.controller";
 import { ensureData } from "../middlewares/ensureData.middleware";
-import { postMovieMiddle } from "../middlewares/moviePost.middleware";
+import { ensureNameMiddle } from "../middlewares/ensureNameMiddle.middleware";
 import { movieRequestSchema } from "../schemas/movie.schema";
 
 export const movieRouter: Router = Router();
@@ -12,7 +12,8 @@ export const movieRouter: Router = Router();
 movieRouter.post(
   "",
   ensureData(movieRequestSchema),
-  postMovieMiddle,
+  ensureNameMiddle,
   postMovieController
 );
 movieRouter.get("", listMoviesController);
+movieRouter.patch("", ensureNameMiddle);
