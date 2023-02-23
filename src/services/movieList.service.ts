@@ -1,9 +1,9 @@
 import { AppDataSource } from "../data-source";
-import { Movies } from "../entities";
+import { Movie } from "../entities";
 import { iMovie, iMovieRepo } from "../interfaces/movie.interface";
 
 export const listAllMovies = async (params: any) => {
-  const movieRepo: iMovieRepo = AppDataSource.getRepository(Movies);
+  const movieRepo: iMovieRepo = AppDataSource.getRepository(Movie);
 
   let page: number | undefined = Number(params.page);
   let perPage: number | undefined = Number(params.perPage);

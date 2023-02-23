@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { AppDataSource } from "../data-source";
-import { Movies } from "../entities";
+import { Movie } from "../entities";
 import { AppError } from "../error";
 
 export const ensureNameMiddle = async (
@@ -8,7 +8,7 @@ export const ensureNameMiddle = async (
   response: Response,
   next: NextFunction
 ): Promise<Response | void> => {
-  const movieRepo = AppDataSource.getRepository(Movies);
+  const movieRepo = AppDataSource.getRepository(Movie);
   const movieName = await movieRepo.findOneBy({
     name: request.body.name || "",
   });

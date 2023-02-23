@@ -1,15 +1,15 @@
 import { Request, Response, NextFunction } from "express";
-import { Repository } from "typeorm";
 import { AppDataSource } from "../data-source";
-import { Movies } from "../entities";
+import { Movie } from "../entities";
 import { AppError } from "../error";
+import { iMovieRepo } from "../interfaces/movie.interface";
 
 export const ensureMovieExists = async (
   request: Request,
   response: Response,
   next: NextFunction
 ): Promise<void> => {
-  const movieRepo: Repository<Movies> = AppDataSource.getRepository(Movies);
+  const movieRepo: iMovieRepo = AppDataSource.getRepository(Movie);
 
   const foundMovie = await movieRepo.findBy({
     id: parseInt(request.params.id),

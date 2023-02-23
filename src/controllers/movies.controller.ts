@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { Movies } from "../entities";
 import { iMovie, iMovieRequest } from "../interfaces/movie.interface";
 import { deleteMovieService } from "../services/movieDelete.service";
 import { listAllMovies } from "../services/movieList.service";

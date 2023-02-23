@@ -1,3 +1,3 @@
 import { Movies } from "./movies.entities";
 
-export { Movies };
+export { Movies as Movie };
