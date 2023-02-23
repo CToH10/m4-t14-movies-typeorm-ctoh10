@@ -10,7 +10,7 @@ export const postMovieController = async (
 ): Promise<Response> => {
   const movie: iMovieRequest = request.body;
   const createdMovie = await createMovie(movie);
-  return response.status(200).json(createdMovie);
+  return response.status(201).json(createdMovie);
 };
 
 export const listMoviesController = async (
