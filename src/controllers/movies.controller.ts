@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Movies } from "../entities";
 import { iMovieRequest } from "../interfaces/movie.interface";
+import { deleteMovieService } from "../services/movieDelete.service";
 import { listAllMovies } from "../services/movieList.service";
 import { createMovie } from "../services/moviePost.service";
 
@@ -24,4 +25,19 @@ export const listMoviesController = async (
   }
 
   return response.json(movies);
+};
+
+export const updateMovieController = async (
+  request: Request,
+  response: Response
+): Promise<Response> => {
+  return response.json();
+};
+
+export const deleteMovieController = async (
+  request: Request,
+  response: Response
+): Promise<Response> => {
+  await deleteMovieService(parseInt(request.params.id));
+  return response.status(204).send();
 };

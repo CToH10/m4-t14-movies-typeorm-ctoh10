@@ -1,7 +1,9 @@
 import { Router } from "express";
 import {
+  deleteMovieController,
   listMoviesController,
   postMovieController,
+  updateMovieController,
 } from "../controllers/movies.controller";
 import { ensureData } from "../middlewares/ensureData.middleware";
 import { ensureMovieExists } from "../middlewares/ensureMovieExists.middleware";
@@ -17,5 +19,10 @@ movieRouter.post(
   postMovieController
 );
 movieRouter.get("", listMoviesController);
-movieRouter.patch("/:id", ensureMovieExists, ensureNameMiddle);
-movieRouter.delete("/:id", ensureMovieExists);
+movieRouter.patch(
+  "/:id",
+  ensureMovieExists,
+  ensureNameMiddle,
+  updateMovieController
+);
+movieRouter.delete("/:id", ensureMovieExists, deleteMovieController);
