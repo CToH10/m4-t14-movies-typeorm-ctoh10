@@ -9,7 +9,9 @@ export const ensureNameMiddle = async (
   next: NextFunction
 ): Promise<Response | void> => {
   const movieRepo = AppDataSource.getRepository(Movies);
-  const movieName = await movieRepo.findOneBy({ name: request.body.name });
+  const movieName = await movieRepo.findOneBy({
+    name: request.body.name || "",
+  });
 
   if (movieName) {
     throw new AppError("Name already exists", 409);

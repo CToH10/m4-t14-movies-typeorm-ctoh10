@@ -8,7 +8,7 @@ import {
 import { ensureData } from "../middlewares/ensureData.middleware";
 import { ensureMovieExists } from "../middlewares/ensureMovieExists.middleware";
 import { ensureNameMiddle } from "../middlewares/ensureNameMiddle.middleware";
-import { movieRequestSchema } from "../schemas/movie.schema";
+import { moviePatchSchema, movieRequestSchema } from "../schemas/movie.schema";
 
 export const movieRouter: Router = Router();
 
@@ -23,6 +23,7 @@ movieRouter.patch(
   "/:id",
   ensureMovieExists,
   ensureNameMiddle,
+  ensureData(moviePatchSchema),
   updateMovieController
 );
 movieRouter.delete("/:id", ensureMovieExists, deleteMovieController);
