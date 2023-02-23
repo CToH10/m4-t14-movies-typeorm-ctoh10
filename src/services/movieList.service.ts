@@ -1,10 +1,9 @@
-import { Repository } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { Movies } from "../entities";
-import { iMovie } from "../interfaces/movie.interface";
+import { iMovie, iMovieRepo } from "../interfaces/movie.interface";
 
 export const listAllMovies = async (params: any) => {
-  const movieRepo: Repository<Movies> = AppDataSource.getRepository(Movies);
+  const movieRepo: iMovieRepo = AppDataSource.getRepository(Movies);
 
   let page: number | undefined = Number(params.page);
   let perPage: number | undefined = Number(params.perPage);
