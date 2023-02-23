@@ -1,9 +1,8 @@
 import { z } from "zod";
-import { number } from "zod/lib";
 
 export const movieRequestSchema = z.object({
   name: z.string().max(50),
-  description: z.string(),
+  description: z.string().optional(),
   price: z.number(),
   duration: z.number(),
 });
